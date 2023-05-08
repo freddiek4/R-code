@@ -1,0 +1,16 @@
+---
+title: "Homework_2"
+author: "Freddie Kiessling"
+date: "2023-02-16"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1.a
+```{r}
+
+```
+
