@@ -1,0 +1,47 @@
+---
+title: "Bootstrap_sampling"
+author: "Freddie Kiessling"
+date: "2023-05-25"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Set the seed for reproducibility
+set.seed(42)
+
+# Define the original sample data
+original_sample <- c(6.55, 6.25, 6.52, 6.13, 5.81, 5.50, 5.12, 6.67)
+
+# Generate bootstrap data sets
+num_bootstrap_samples <- 6  # Number of bootstrap samples to generate
+bootstrap_samples <- replicate(num_bootstrap_samples, sample(original_sample, replace = TRUE))
+
+
+means <- numeric(num_bootstrap_samples)  # Vector to store the means
+
+# Print the bootstrap samples
+for (i in 1:num_bootstrap_samples) {
+  cat("Bootstrap Sample", i, ":", bootstrap_samples[, i], "\n")
+  means[i] <- mean(bootstrap_samples[, i]) 
+  cat("Mean of Bootstrap Sample", i, ":", mean(bootstrap_samples[, i]), "\n")
+}
+
+mean_of_means <- mean(means)
+cat("Mean of all the means:", mean_of_means, "\n")
+
+adjusted_means <- means - mean_of_means
+
+# Print the adjusted means
+for (i in 1:num_bootstrap_samples) {
+  cat("Adjusted Mean of Bootstrap Sample", i, ":", adjusted_means[i], "\n")
+}
+
+
+sum_squared_adjusted_means <- sum(adjusted_means^2)
+cat("Sum of squared adjusted means:", sum_squared_adjusted_means, "\n")
+```
+
